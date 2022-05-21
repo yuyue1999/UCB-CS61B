@@ -5,9 +5,9 @@ import javax.swing.event.MouseInputAdapter;
  * @create 2022-05-20 8:12 PM
  */
 public class LinkedListDeque<T> {
-    IntNode Sentinel;
+    private IntNode Sentinel;
     private int size;
-    public class IntNode{
+    private class IntNode{
         public IntNode prev;
         public T item;
         public IntNode next;
@@ -23,12 +23,12 @@ public class LinkedListDeque<T> {
         this.Sentinel.next=this.Sentinel;
         this.Sentinel.prev=this.Sentinel;
     }
-    public LinkedListDeque(T i){
-        size=1;
-        this.Sentinel=new IntNode(null,null,null);
-        this.Sentinel.next=new IntNode(i,Sentinel,Sentinel);
-        this.Sentinel.prev=this.Sentinel.next;
-    }
+//    public LinkedListDeque(T i){
+//        size=1;
+//        this.Sentinel=new IntNode(null,null,null);
+//        this.Sentinel.next=new IntNode(i,Sentinel,Sentinel);
+//        this.Sentinel.prev=this.Sentinel.next;
+//    }
     //add and remove operations must not involve any looping or recursion.
     //A single such operation must take “constant time”, i.e. execution time should not depend on the size of the deque.
     public void addFirst(T item){

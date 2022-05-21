@@ -7,9 +7,9 @@ public class ArrayDeque<T> {
     //For arrays of length 16 or more, your usage factor should always be at least 25%.
     // For smaller arrays, your usage factor can be arbitrarily low.
     private int size;
-    public T[] items;
-    public int nextFirst;
-    public int nextLast;
+    private T[] items;
+    private int nextFirst;
+    private int nextLast;
 
     public ArrayDeque(){
         items=(T[]) new Object[8];
@@ -27,7 +27,7 @@ public class ArrayDeque<T> {
 //            this.nextLast=nextFirst+1;
 //        }
 //    }
-    public void resize(int new_size){
+    private void resize(int new_size){
         T[] newarray=(T[])new Object[new_size];
         for(int i=0;i<size;i++){
             newarray[i]=this.get(i);
@@ -71,6 +71,9 @@ public class ArrayDeque<T> {
         }
     }
     public T removeFirst(){
+        if(size==0){
+            return null;
+        }
         T remove =items[(nextFirst+1)%items.length];
         items[(nextFirst+1)%items.length]=null;
         size--;
@@ -81,6 +84,9 @@ public class ArrayDeque<T> {
         return remove;
     }
     public T removeLast(){
+        if(size==0){
+            return null;
+        }
         T remove=items[(nextLast-1)%items.length];
         items[(nextLast-1)%items.length]=null;
         size--;
@@ -91,7 +97,10 @@ public class ArrayDeque<T> {
         return remove;
     }
     public T get(int index){
+        if(index<0 || index>size-1){
+            return null;
+        }
         return items[(nextFirst+index+1)%items.length];
     }
-        
+
 }
