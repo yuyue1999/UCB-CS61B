@@ -12,13 +12,4 @@ public class OffByOne implements CharacterComparator{
         return false;
     }
 
-//    public static void main(String[] args) {
-//        OffByOne obo = new OffByOne();
-//        System.out.println(obo.equalChars('a', 'b'));
-//        System.out.println(obo.equalChars('r', 'q'));
-//        System.out.println(obo.equalChars('a', 'e'));
-//        System.out.println(obo.equalChars('z', 'a'));
-//        System.out.println(obo.equalChars('a', 'a'));
-//        System.out.println(obo.equalChars('&', '%'));
-//    }
 }

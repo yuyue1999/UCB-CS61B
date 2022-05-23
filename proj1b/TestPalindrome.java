@@ -24,7 +24,5 @@ public class TestPalindrome {
 
     }
     //Uncomment this class once you've created your Palindrome class.
-    public static void main(String... args) {
-        jh61b.junit.TestRunner.runTests("all", TestPalindrome.class);
-    }
+    
 }

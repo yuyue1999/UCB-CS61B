@@ -66,17 +66,5 @@ public class Palindrome {
 
     }
 
-    public static void main(String[] args) {
-        String word="flake";
-        Palindrome P=new Palindrome();
-        //Deque<Character> result=P.wordToDeque(word);
-        //System.out.println(result.size());
-        //result.printDeque();
-        P.isPalindrome(word);
-        char[] temp=word.toCharArray();
-        System.out.println(temp.length);
-        OffByOne off=new OffByOne();
-        System.out.println(P.isPalindrome(word, off));
-
-    }
+    
 }
