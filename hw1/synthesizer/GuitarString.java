@@ -1,6 +1,8 @@
 package synthesizer;// TODO: Make sure to make this class a part of the synthesizer package
-
+import edu.princeton.cs.introcs.StdAudio;
 import edu.princeton.cs.algs4.RunLength;
+
+import java.util.Iterator;
 
 //package <package name>;
 //Make sure this class is public
@@ -21,6 +23,9 @@ public class GuitarString {
         //       accuracy, use the Math.round() function before casting.
         //       Your buffer should be initially filled with zeros.
         this.buffer=new ArrayRingBuffer<Double>((int) (SR/frequency));
+//        for(int i=0;i<buffer.capacity();i++){
+//            buffer.enqueue(0.0);
+//        }
     }
 
 
@@ -57,4 +62,14 @@ public class GuitarString {
         // TODO: Return the correct thing.
         return buffer.peek();
     }
+
+//    public static void main(String[] args) {
+//        GuitarString G=new GuitarString(4410);
+//       // G.pluck();
+//        Iterator<Double> I=G.buffer.iterator();
+//        while(I.hasNext()){
+//            System.out.println(I.next());
+//        }
+//        System.out.println(G.sample());
+//    }
 }
