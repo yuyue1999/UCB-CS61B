@@ -162,19 +162,19 @@ public class Percolation {
         }
         return false;
     }   // does the system percolate?
-//    public static void main(String[] args) {
-//        Percolation P=new Percolation(1);
-//        //P.open(0,0);
-//        System.out.println(P.percolates());
-////        P.open(3,4);
-////        P.open(2,4);
-////        P.open(2,2);
-////        P.open(2,3);
-////        P.open(0,2);
-////        P.open(1,2);
-////        System.out.println(P.isFull(3, 4));
-//        WeightedQuickUnionUF Q=new WeightedQuickUnionUF(10);
-//        System.out.println(Q.connected(0, 0));
-//
-//    }  // use for unit testing (not required)
+    public static void main(String[] args) {
+        Percolation P=new Percolation(1);
+        //P.open(0,0);
+        System.out.println(P.percolates());
+//        P.open(3,4);
+//        P.open(2,4);
+//        P.open(2,2);
+//        P.open(2,3);
+//        P.open(0,2);
+//        P.open(1,2);
+//        System.out.println(P.isFull(3, 4));
+        WeightedQuickUnionUF Q=new WeightedQuickUnionUF(10);
+        System.out.println(Q.connected(0, 0));
+
+    }  // use for unit testing (not required)
 }
