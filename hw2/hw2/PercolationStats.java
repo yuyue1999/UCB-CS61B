@@ -12,10 +12,9 @@ public class PercolationStats {
                 throw new IllegalArgumentException();
             }
             numberofopensites=new int[T];
-            pf=new PercolationFactory();
             for(int i=0;i<T;i++){
                Percolation P= pf.make(N);
-               while(P.percolates()){
+               while(!P.percolates()){
                    P.open(StdRandom.uniform(N),StdRandom.uniform(N));
                }
                numberofopensites[i]=P.numberOfOpenSites();
@@ -37,6 +36,17 @@ public class PercolationStats {
         public double confidenceHigh()  {
             return mean()+1.96*stddev()/Math.sqrt(numberofopensites.length);
         }                               // high endpoint of 95% confidence interval
+//        public void print(){
+//            for (int i=0;i<numberofopensites.length;i++){
+//                System.out.println(numberofopensites[i]);
+//            }
+//        }
+    public static void main(String[] args) {
+            PercolationFactory pf=new PercolationFactory();
+        PercolationStats P=new PercolationStats(10,10,pf);
+        System.out.println(P.mean());
 
+
+    }
 
 }
