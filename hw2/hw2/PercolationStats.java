@@ -6,22 +6,24 @@ import edu.princeton.cs.algs4.StdStats;
 import java.util.ArrayList;
 
 public class PercolationStats {
-        private int[] numberofopensites;
+        private double[] numberofopensites;
+        //private int N;
         public PercolationStats(int N, int T, PercolationFactory pf){
             if(N<=0 ||T<=0){
                 throw new IllegalArgumentException();
             }
-            numberofopensites=new int[T];
+            numberofopensites=new double[T];
             for(int i=0;i<T;i++){
                Percolation P= pf.make(N);
                while(!P.percolates()){
                    P.open(StdRandom.uniform(N),StdRandom.uniform(N));
                }
-               numberofopensites[i]=P.numberOfOpenSites();
+               numberofopensites[i]=(double) P.numberOfOpenSites()/(N*N);
             }
+            //this.N=N;
         }   // perform T independent experiments on an N-by-N grid
         public double mean(){
-            int sum=0;
+            double sum=0.0;
             for(int i=0;i<numberofopensites.length;i++){
                 sum=sum+numberofopensites[i];
             }
@@ -41,12 +43,11 @@ public class PercolationStats {
 //                System.out.println(numberofopensites[i]);
 //            }
 //        }
-    public static void main(String[] args) {
-            PercolationFactory pf=new PercolationFactory();
-        PercolationStats P=new PercolationStats(10,10,pf);
-        System.out.println(P.mean());
+//        public static void main(String[] args) {
+//            PercolationFactory pf=new PercolationFactory();
+//            PercolationStats P=new PercolationStats(2,10000,pf);
+//            System.out.println(P.mean());
+//        }
 
-
-    }
 
 }

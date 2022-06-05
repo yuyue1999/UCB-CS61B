@@ -154,9 +154,7 @@ public class Percolation {
         return count;
     }          // number of open sites
     public boolean percolates() {
-        if(Grid.length==1){
-            return false;
-        }
+
         for(int i=0;i< Grid.length;i++){
             if(isFull(Grid.length-1,i )){
                 return true;
@@ -164,21 +162,19 @@ public class Percolation {
         }
         return false;
     }   // does the system percolate?
-    public static void main(String[] args) {
-        Percolation P=new Percolation(2);
-        P.open(0,0);
-        P.open(1,0);
-        P.open(1,1);
-        System.out.println(P.percolates());
-//        P.open(3,4);
-//        P.open(2,4);
-//        P.open(2,2);
-//        P.open(2,3);
-//        P.open(0,2);
-//        P.open(1,2);
-//        System.out.println(P.isFull(3, 4));
-        WeightedQuickUnionUF Q=new WeightedQuickUnionUF(10);
-        System.out.println(Q.connected(0, 0));
-
-    }  // use for unit testing (not required)
+//    public static void main(String[] args) {
+//        Percolation P=new Percolation(1);
+//        //P.open(0,0);
+//        System.out.println(P.percolates());
+////        P.open(3,4);
+////        P.open(2,4);
+////        P.open(2,2);
+////        P.open(2,3);
+////        P.open(0,2);
+////        P.open(1,2);
+////        System.out.println(P.isFull(3, 4));
+//        WeightedQuickUnionUF Q=new WeightedQuickUnionUF(10);
+//        System.out.println(Q.connected(0, 0));
+//
+//    }  // use for unit testing (not required)
 }
