@@ -86,5 +86,12 @@ public class ComplexOomage implements Oomage {
         randomComplexOomage().draw(0.75, 0.75, 1.5);
         randomComplexOomage().draw(0.25, 0.75, 1.5);
         randomComplexOomage().draw(0.75, 0.25, 1.5);
+//        List<Integer> I=new ArrayList<>();
+//        I.add(0);
+//        I.add(1);
+//        I.add(2);
+//        for(int i:I){
+//            System.out.println(i);
+//        }
     }
 } 
