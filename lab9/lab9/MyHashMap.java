@@ -1,13 +1,16 @@
 package lab9;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *  A hash table-backed Map implementation. Provides amortized constant time
  *  access to elements via get(), remove(), and put() in the best case.
  *
- *  @author Your name here
+ *  @author Joey Yu
  */
 public class MyHashMap<K, V> implements Map61B<K, V> {
 
@@ -53,19 +56,40 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        return buckets[hash(key)].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if(((double)size/buckets.length)>MAX_LF){
+            ArrayMap[] temp=buckets;
+            buckets=new ArrayMap[buckets.length*2];
+            for (int i = 0; i < this.buckets.length; i += 1) {
+                this.buckets[i] = new ArrayMap<>();
+            }
+            for(int i=0;i<temp.length;i++){
+                Set<K> tempset = temp[i].keySet();
+                for(K k:tempset){
+                    //this.put(k, (V) temp[i].get(k));
+                    int temphash=hash(k);
+                    buckets[temphash].put(k,(V) temp[i].get(k));
+                }
+            }
+        }
+        int hashkey=hash(key);
+        if(get(key)==null){
+            buckets[hashkey].put(key,value);
+            size++;
+        }else{
+            buckets[hashkey].put(key,value);
+        }
     }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
@@ -73,7 +97,14 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Returns a Set view of the keys contained in this map. */
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        Set<K> result=new HashSet<>();
+        for(int i=0;i< buckets.length;i++){
+            ArrayMap<K,V> temp=buckets[i];
+            for(K k:temp.keySet()){
+                result.add(k);
+            }
+        }
+        return result;
     }
 
     /* Removes the mapping for the specified key from this map if exists.
@@ -81,7 +112,13 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * UnsupportedOperationException. */
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+        if(get(key)==null){
+            return null;
+        }
+        int hashcode=hash(key);
+        size--;
+        return buckets[hashcode].remove(key);
+
     }
 
     /* Removes the entry for the specified key only if it is currently mapped to
@@ -89,11 +126,36 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * throw an UnsupportedOperationException.*/
     @Override
     public V remove(K key, V value) {
-        throw new UnsupportedOperationException();
+
+        if(get(key)==null){
+            return null;
+        }
+        int hashcode=hash(key);
+        if(get(key)==value){
+            size--;
+        }
+        return buckets[hashcode].remove(key,value);
     }
 
     @Override
     public Iterator<K> iterator() {
-        throw new UnsupportedOperationException();
+        return this.keySet().iterator();
     }
-}
+
+//    public static void main(String[] args) {
+//        MyHashMap<String, Integer> b = new MyHashMap<String, Integer>();
+//        for (int i = 0; i < 455; i++) {
+//            b.put("hi" + i, 1);
+//            //make sure put is working via containsKey and get
+////            boolean result=(null != b.get("hi" + i)
+////                    && b.containsKey("hi" + i));
+//            System.out.println(b.get("hi" + i));
+//        }
+//        System.out.println(b.size());
+//        b.put("hi" + 49, 1);
+//        System.out.println(b.size());
+//        System.out.println(b.get("hi" + 49));
+//        System.out.println(b.containsKey("hi49"));
+
+    }
+
