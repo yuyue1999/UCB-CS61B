@@ -1,3 +1,5 @@
+package lab11.graphs;
+
 import org.junit.Test;
 import org.w3c.dom.Node;
 
@@ -53,7 +55,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      * Gets the node at the ith index, or returns null if the index is out of
      * bounds.
      */
-    private Node getNode(int index) {
+    public Node getNode(int index) {
         if (!inBounds(index)) {
             return null;
         }
@@ -147,6 +149,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         contents[size]=new Node(item,priority);
         swim(size);
     }
+    public boolean isEmpty(){
+        return size==0;
+    }
 
     /**
      * Returns the Node with the smallest priority value, but does not remove it
@@ -170,6 +175,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
+        if(size==1){
+            T result=contents[1].myItem;
+            contents[1]=null;
+            size=0;
+            return result;
+        }
         Node result=contents[1];
         contents[1]=contents[size];
         contents[size]=null;
@@ -445,6 +456,24 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             assertEquals(expected[i], pq.removeMin());
             i += 1;
         }
+    }
+
+    public static void main(String[] args) {
+        Maze maze = new Maze("lab11/graphs/maze.txt");
+        ArrayHeap<Integer> fringe=new ArrayHeap<>();
+        int[] distTo = new int[maze.V()];
+        for (int i = 0; i < maze.V(); i += 1) {
+            distTo[i] = 100;
+            //edgeTo[i] = Integer.MAX_VALUE;
+        }
+        distTo[0]=0;
+        for(int i=0;i<maze.V();i++){
+            fringe.insert(i,distTo[i]);
+        }
+        int v=fringe.removeMin();
+        fringe.changePriority(1,1);
+        System.out.println(fringe);
+
     }
 
     

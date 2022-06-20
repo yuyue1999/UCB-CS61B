@@ -27,8 +27,8 @@ public abstract class MazeExplorer extends Observable {
         edgeTo = new int[maze.V()];
         marked = new boolean[maze.V()];
         for (int i = 0; i < maze.V(); i += 1) {
-            distTo[i] = Integer.MAX_VALUE;
-            edgeTo[i] = Integer.MAX_VALUE;
+            distTo[i] = 10000;
+            edgeTo[i] = 10000;
         }
         addObserver(maze);
     }

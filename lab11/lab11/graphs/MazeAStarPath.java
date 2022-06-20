@@ -40,8 +40,42 @@ public class MazeAStarPath extends MazeExplorer {
     /** Performs an A star search from vertex s. */
     private void astar(int s) {
         // TODO
-        
+        ArrayHeap<Integer> fringe=new ArrayHeap<>();
+        marked[s]=true;
+        announce();
+        for(int i=0;i<maze.V();i++){
+            if(i==s){
+                fringe.insert(s,distTo[s]);
+            }else {
+                fringe.insert(i,distTo[i]);
+            }
+        }
+        while(!fringe.isEmpty()){
+            int v=fringe.removeMin();
+            for(int w:maze.adj(v)){
+                if(!marked[w]){
+                    relax(w,v,fringe);
+                    if(w==t){
+                        return;
+                    }
+                }
+            }
+        }
 
+    }
+    private void relax(int w,int v,ArrayHeap fringe){
+        if(distTo[w]>distTo[v]+1){
+            distTo[w]=distTo[v]+1;
+            edgeTo[w]=v;
+            marked[w]=true;
+            if(fringe.getNode(w)!=null){
+                fringe.changePriority(w,distTo[w]+h(w));
+            }
+            announce();
+//            if(w==t){
+//                return;
+//            }
+        }
     }
 
     @Override
