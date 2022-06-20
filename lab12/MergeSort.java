@@ -73,6 +73,9 @@ public class MergeSort {
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
+        if(items.isEmpty()){
+            return items;
+        }
         Queue<Queue<Item>> single=makeSingleItemQueues(items);
         while(single.size()!=1){
             int single_szie=single.size();
@@ -92,13 +95,13 @@ public class MergeSort {
 
     public static void main(String[] args) {
         Queue<String> students = new Queue<String>();
-        students.enqueue("Alice");
-        students.enqueue("Ethan");
-        students.enqueue("Vanessa");
-        //System.out.println(makeSingleItemQueues(students));
-        //Queue<String> students2 = new Queue<String>();
-        students.enqueue("Blice");
-        students.enqueue("Fthan");
+//        students.enqueue("Alice");
+//        students.enqueue("Ethan");
+//        students.enqueue("Vanessa");
+//        //System.out.println(makeSingleItemQueues(students));
+//        //Queue<String> students2 = new Queue<String>();
+//        students.enqueue("Blice");
+//        students.enqueue("Fthan");
         //students.enqueue("Yanessa");
         System.out.println(mergeSort(students));
     }

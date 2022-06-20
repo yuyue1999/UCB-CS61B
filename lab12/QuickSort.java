@@ -49,8 +49,8 @@ public class QuickSort {
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
         int times=unsorted.size();
-        for(int i=0;i<times;i++){
-            Item temp=unsorted.dequeue();
+        for(Item temp:unsorted){
+            //Item temp=unsorted.dequeue();
             if(temp.compareTo(pivot)<0){
                 less.enqueue(temp);
             }else if(temp.compareTo(pivot)>0){
@@ -92,5 +92,6 @@ public class QuickSort {
         students.enqueue("Fthan");
         students.enqueue("Ze");
         System.out.println(quickSort(students));
+        System.out.println(students.size());
     }
 }
