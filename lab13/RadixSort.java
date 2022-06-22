@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * Class for doing Radix sort
  *
@@ -17,7 +19,41 @@ public class RadixSort {
      */
     public static String[] sort(String[] asciis) {
         // TODO: Implement LSD Sort
-        return null;
+        String[] temp=new String[asciis.length];
+        for(int i=0;i< temp.length;i++){
+            temp[i]=asciis[i];
+        }
+        LinkedList<String>[] store=new LinkedList[256];
+        for(int i=0;i<store.length;i++){
+            store[i]=new LinkedList<>();
+        }
+        int MaxLength=Integer.MIN_VALUE;
+        for(int i=0;i< asciis.length;i++){
+            if(asciis[i].length()>MaxLength){
+                MaxLength=asciis[i].length();
+            }
+        }
+        HashMap<String,Integer> spaceTimes=new HashMap<>();
+        for(int i=0;i<temp.length;i++){
+            spaceTimes.put(temp[i], MaxLength- temp[i].length());
+        }
+        for(int i=MaxLength-1;i>=0;i--){
+            for(int j=0;j<temp.length;j++){
+                if(temp[j].length()<i+1){
+                    store[32].add(temp[j]);
+                }else {
+                    store[(int)temp[j].charAt(i)].add(temp[j]);
+                }
+            }
+            int n=0;
+            for(int k=0;k< store.length;k++){
+                while(!store[k].isEmpty()){
+                    temp[n]=store[k].removeFirst();
+                    n++;
+                }
+            }
+        }
+        return temp;
     }
 
     /**
@@ -45,4 +81,16 @@ public class RadixSort {
         // Optional MSD helper method for optional MSD radix sort
         return;
     }
-}
+
+//    public static void main(String[] args) {
+//        String[] temp={"bcd", "cb","a","apf","ad","!apple"};
+//        String[] result=sort(temp);
+//        for(String s:result){
+//            System.out.println(s);
+//        }
+
+
+
+    }
+
+
