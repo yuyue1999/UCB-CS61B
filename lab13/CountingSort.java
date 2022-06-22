@@ -78,6 +78,20 @@ public class CountingSort {
         }
         if(j== arr.length){
             return naiveCountingSort(arr);
+        }else if(j==0){
+            int[] AllNega=new int[arr.length];
+            int[] AllNega_result=new int[arr.length];
+            for(int i=0;i< AllNega.length;i++){
+                AllNega[i]=-arr[i];
+            }
+            int[] reverses=naiveCountingSort(AllNega);
+            for(int i=0;i<AllNega.length;i++){
+                AllNega_result[i]=reverses[reverses.length-1-i];
+            }
+            for(int i=0;i< AllNega_result.length;i++){
+                AllNega_result[i]=-AllNega_result[i];
+            }
+            return AllNega_result;
         }
         int[] positive=new int[j];
         int[] negative=new int[arr.length-j];
@@ -128,14 +142,15 @@ public class CountingSort {
 //        return HM;
 //    }
 //
-    public static void main(String[] args) {
-        int[] arr = {9, 5, -4, 2, 1, -2, 5, 3, 0, -2, 3, 1, 1};
-        int[] nonNegative = {9, 5, 2, 1, 5, 3, 0, 3, 1, 1};
-        int[] result=betterCountingSort(arr);
-        int[] result2=betterCountingSort(nonNegative);
-        for(int i:result2){
-            System.out.println(i);
-        }
-
-    }
+//    public static void main(String[] args) {
+//        int[] arr = {9, 5, -4, 2, 1, -2, 5, 3, 0, -2, 3, 1, -1};
+//        int[] nonNegative = {9, 5, 2, 1, 5, 3, 0, 3, 1, 1};
+//        int [] arr1={-7,-8,-1,-2};
+//        int[] result=betterCountingSort(arr1);
+//        int[] result2=betterCountingSort(nonNegative);
+//        for(int i:result){
+//            System.out.println(i);
+//        }
+//
+//    }
 }
