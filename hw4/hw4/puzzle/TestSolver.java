@@ -16,6 +16,7 @@ public class TestSolver {
         final String name;
         final Board board;
         final int numMoves;
+
         public BoardPuzzleSolution(String n, Board b, int m) {
             name = n;
             board = b;
@@ -28,6 +29,7 @@ public class TestSolver {
         final String goal;
         final int numMoves;
         final List<String> possibleSolution;
+
         public WordPuzzleSolution(String s, String g, int m, List<String> ps) {
             start = s;
             goal = g;
@@ -36,13 +38,14 @@ public class TestSolver {
         }
     }
 
-    /** Takes as input a word puzzle string and returns a WordPuzzle
-     *  object. For example, "kept, tent, kept-kent-tent, 13"
-     *  would return a WordPuzzle with start = kept, goal = tent,
-     *  numMoves = 2, and possible solution {"kept", "kent", "tent"}.
-     *  The last value is not used by this class, and indicates
-     *  the number of enqueues used by the reference solution to
-     *  solve the puzzle. Returns null if String isn't a valid word puzzle.
+    /**
+     * Takes as input a word puzzle string and returns a WordPuzzle
+     * object. For example, "kept, tent, kept-kent-tent, 13"
+     * would return a WordPuzzle with start = kept, goal = tent,
+     * numMoves = 2, and possible solution {"kept", "kent", "tent"}.
+     * The last value is not used by this class, and indicates
+     * the number of enqueues used by the reference solution to
+     * solve the puzzle. Returns null if String isn't a valid word puzzle.
      */
     public static WordPuzzleSolution stringToWordPuzzle(String wp) {
         try {
@@ -62,9 +65,10 @@ public class TestSolver {
         }
     }
 
-/* Uncomment once you've written Solver.
+
     @Test(timeout = 10000)
     public void testWordPuzzles() {
+        //记得改回来
         In in = new In("input/word_puzzles.txt");
         while (!in.isEmpty()) {
             WordPuzzleSolution wps = stringToWordPuzzle(in.readLine());
@@ -74,14 +78,12 @@ public class TestSolver {
             Word w = new Word(wps.start, wps.goal);
             Solver s = new Solver(w);
             String errorMessage = "Wrong number of moves solving "
-                                  + wps.start + "->" + wps.goal;
+                    + wps.start + "->" + wps.goal;
 
             assertEquals(errorMessage, wps.numMoves, s.moves());
         }
     }
- */
 
- /* Uncomment everything in this block once you've written Board.
      public static Board readBoard(String filename) {
         In in = new In(filename);
         int N = in.readInt();
@@ -94,7 +96,6 @@ public class TestSolver {
         Board start = new Board(tiles);
         return start;
     }
-
     @Test(timeout = 1000)
     public void test2x2BoardPuzzles() {
         for (int i = 0; i <= 6; i += 1) {
@@ -107,7 +108,6 @@ public class TestSolver {
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
     }
-
     @Test(timeout = 40000)
     public void test3x3BoardPuzzles() {
         for (int i = 0; i <= 30; i += 1) {
@@ -120,7 +120,6 @@ public class TestSolver {
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
     }
-
     @Test(timeout = 20000)
     public void test4x4BoardPuzzles() {
         for (int i = 0; i <= 30; i += 1) {
@@ -133,7 +132,6 @@ public class TestSolver {
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
     }
-
     @Test(timeout = 20000)
     public void testVariousPuzzles() {
         for (int i = 0; i <= 31; i += 1) {
@@ -145,5 +143,5 @@ public class TestSolver {
             Solver s = new Solver(b);
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
-    }*/
+    }
 }

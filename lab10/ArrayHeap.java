@@ -447,5 +447,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
     }
 
+    public static void main(String[] args) {
+        ArrayHeap<String> tom=new ArrayHeap<>();
+        tom.insert("apple",8);
+        tom.insert("bape",5);
+        System.out.println(tom.removeMin());
+    }
+
     
 }

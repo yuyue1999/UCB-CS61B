@@ -7,6 +7,7 @@ import edu.princeton.cs.introcs.In;
 
 public class Word implements WorldState {
     private static Set<String> words;
+    //上传时记得改回来！！！！
     private static final String WORDFILE = "input/words10000.txt";
     private final String word;
     private final String goal;
@@ -114,5 +115,13 @@ public class Word implements WorldState {
         int result = word != null ? word.hashCode() : 0;
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
         return result;
+    }
+
+    public static void main(String[] args) {
+        Word W=new Word("stores","shore");
+        HashSet<Word> temp= (HashSet) W.neighbors();
+        for(Word t:temp){
+            System.out.println(t.word);
+        }
     }
 }
