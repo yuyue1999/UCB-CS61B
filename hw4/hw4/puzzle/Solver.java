@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Solver  {
     private MinPQ<SearchNode> store;
     private ArrayList<WorldState> finalresult=new ArrayList<>();
-    class SearchNode implements Comparable<Solver.SearchNode>{
+    private class SearchNode implements Comparable<Solver.SearchNode>{
         private int move;
         public SearchNode previous;
         public int priority;
@@ -48,7 +48,7 @@ public class Solver  {
     }
     public Iterable<WorldState> solution(){
         Stack<WorldState> result=new Stack<>();
-        SearchNode destination=store.delMin();
+        SearchNode destination=store.min();
         while(destination!=null){
             result.push(destination.current);
             destination=destination.previous;

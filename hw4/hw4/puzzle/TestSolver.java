@@ -144,4 +144,18 @@ public class TestSolver {
             assertEquals("Wrong number of moves on " + puzzleName, bps.numMoves, s.moves());
         }
     }
+
+//    public static void main(String[] args) {
+//        int i=2;
+//        String pnum = String.format("%02d", i);
+//        String puzzleName = "input/puzzle4x4-" + pnum + ".txt";
+//        Board b = readBoard(puzzleName);
+//        int numMoves = i;
+//        BoardPuzzleSolution bps = new BoardPuzzleSolution(puzzleName, b, numMoves);
+//        Solver s = new Solver(b);
+//        for(WorldState dw:s.solution()){
+//            System.out.println(dw);
+//        }
+//        System.out.println(s.moves());
+//    }
 }

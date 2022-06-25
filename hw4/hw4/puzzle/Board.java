@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Board implements WorldState {
-    public int[][] tiles;
+    private int[][] tiles;
     private int[][] goal;
     private int size;
     private ArrayList<WorldState> store;
@@ -230,9 +230,7 @@ public class Board implements WorldState {
         for (int i = 0; i < size(); i++) {
             for (int j = 0; j < size(); j++) {
                 if (i == size() - 1 && j == size() - 1) {
-                    if (tiles[i][j] != 0) {
-                        result++;
-                    }
+                    break;
                 } else {
                     if (tiles[i][j] != count) {
                         result++;
@@ -241,7 +239,7 @@ public class Board implements WorldState {
                 count++;
             }
         }
-        return result - 1;
+        return result;
     }
 
     private int[] manhattan_helper(int search) {
@@ -293,14 +291,20 @@ public class Board implements WorldState {
             }
             return false;
         }
+        if(this.size()!= board1.size()){
+            return false;
+        }
         for (int i = 0; i < size(); i++) {
             for (int j = 0; j < size(); j++) {
-                if (this.tiles[i][j] != board1.tiles[i][j]) {
+                if (this.tileAt(i,j) != board1.tileAt(i,j)) {
                     return false;
                 }
             }
         }
         return true;
+    }
+    public int hashCode(){
+        return 0;
     }
 
 
@@ -318,36 +322,32 @@ public class Board implements WorldState {
         return s.toString();
     }
 
-    public static void main(String[] args) {
-        int dwdwd = 3;
-        int[][] test = new int[dwdwd][dwdwd];
-        for (int i = 0; i < dwdwd; i++) {
-            test[i] = new int[dwdwd];
-        }
-        int tom = 1;
-        for (int i = 0; i < dwdwd; i++) {
-            for (int j = 0; j < dwdwd; j++) {
-                test[i][j] = tom;
-                tom++;
-            }
-        }
-        test[2][2] = 5;
-        test[0][0] = 8;
-        test[0][1] = 1;
-        test[1][1] = 0;
-        test[1][2] = 2;
-        test[2][1] = 6;
-
-
-        Board testB = new Board(test);
-        System.out.println(testB.hamming());
-        System.out.println(testB.manhattan());
-//        for(WorldState t:testB.neighbors()){
-//            Board tem=(Board)t;
-//            System.out.println(tem);
-//            System.out.println(tem.manhattan());
+//    public static void main(String[] args) {
+//        int ttt=10;
+//        int[][] test=new int[ttt][ttt];
+//        for(int i=0;i<ttt;i++){
+//            test[i]=new int[ttt];
 //        }
+//        int tom=1;
+//        for(int i=0;i<ttt;i++){
+//            for(int j=0;j<ttt;j++){
+//                test[i][j]=tom;
+//                tom++;
+//            }
+//        }
+//        test[ttt-1][ttt-1]=0;
+//        int[][] test1={{2,3},{1,0}};
+//        Board tomcat=new Board(test1);
+//        Solver S=new Solver(tomcat);
+//        ArrayList<WorldState> f= (ArrayList<WorldState>) S.solution();
+//        for(WorldState dwd:f){
+//            System.out.println(dwd);
+//        }
+//
+//    }
+
+
     }
 
-}
+
 
