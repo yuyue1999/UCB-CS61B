@@ -241,6 +241,10 @@ public class SeamCarver {
         }
         private Iterable<searchNode> neighbors(){
             ArrayList<searchNode> store1=new ArrayList<>();
+            if(width()==1){
+                store1.add(new searchNode(i,j-1,this));
+                return store1;
+            }
             if(i==0){
                 store1.add(new searchNode(i,j-1,this));
                 store1.add(new searchNode(i+1,j-1,this));
@@ -265,6 +269,11 @@ public class SeamCarver {
     public   int[] findVerticalSeam()     {
         // sequence of indices for vertical seam
         double[] result=new double[width()];
+        int[] final_result=new int[height()];
+        if(width()==1 && height()==1){
+            final_result[0]=0;
+            return final_result;
+        }
         MinPQ<searchNode>[] PQs=new MinPQ[width()];
         for(int k=0;k<width();k++){
             PQs[k]=new MinPQ<>();
@@ -290,7 +299,6 @@ public class SeamCarver {
                 index=k;
             }
         }
-        int[] final_result=new int[height()];
         searchNode target=PQs[index].min();
         for(int k=0;k<height();k++){
             final_result[k]=target.i;
