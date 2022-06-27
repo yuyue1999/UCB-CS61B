@@ -31,6 +31,57 @@ public class SeamCarver {
     // height of current picture
     public  double energy(int x, int y)    {
         // energy of pixel at column x and row y
+        if(width()==1 && height()==1){
+            return 0;
+        }
+        if(width()==1){
+            if(y==0){
+                Color Y1=picture.get(x,height()-1);
+                Color Y2=picture.get(x,y+1);
+                int Y=(Y1.getRed()-Y2.getRed())*(Y1.getRed()-Y2.getRed())+
+                        +(Y1.getGreen()-Y2.getGreen())*(Y1.getGreen()-Y2.getGreen())
+                        +(Y1.getBlue()-Y2.getBlue())*(Y1.getBlue()-Y2.getBlue());
+                return Y;
+            }
+            if(y==height()-1){
+                Color Y1=picture.get(x,y-1);
+                Color Y2=picture.get(x,0);
+                int Y=(Y1.getRed()-Y2.getRed())*(Y1.getRed()-Y2.getRed())+
+                        +(Y1.getGreen()-Y2.getGreen())*(Y1.getGreen()-Y2.getGreen())
+                        +(Y1.getBlue()-Y2.getBlue())*(Y1.getBlue()-Y2.getBlue());
+                return Y;
+            }
+            Color Y1=picture.get(x,y-1);
+            Color Y2=picture.get(x,y+1);
+            int Y=(Y1.getRed()-Y2.getRed())*(Y1.getRed()-Y2.getRed())+
+                    +(Y1.getGreen()-Y2.getGreen())*(Y1.getGreen()-Y2.getGreen())
+                    +(Y1.getBlue()-Y2.getBlue())*(Y1.getBlue()-Y2.getBlue());
+            return Y;
+        }
+        if(height()==1){
+            if(x==0){
+                Color X1=picture.get(x+1,y);
+                Color X2=picture.get(width()-1,y);
+                int X=(X1.getRed()-X2.getRed())*(X1.getRed()-X2.getRed())
+                        +(X1.getGreen()-X2.getGreen())*(X1.getGreen()-X2.getGreen())
+                        +(X1.getBlue()-X2.getBlue())*(X1.getBlue()-X2.getBlue());
+                return X;
+            }
+            if(x==width()-1){
+                Color X1=picture.get(0,y);
+                Color X2=picture.get(x-1,y);
+                int X=(X1.getRed()-X2.getRed())*(X1.getRed()-X2.getRed())
+                        +(X1.getGreen()-X2.getGreen())*(X1.getGreen()-X2.getGreen())
+                        +(X1.getBlue()-X2.getBlue())*(X1.getBlue()-X2.getBlue());
+                return X;
+            }
+            Color X1=picture.get(x+1,y);
+            Color X2=picture.get(x-1,y);
+            int X=(X1.getRed()-X2.getRed())*(X1.getRed()-X2.getRed())
+                    +(X1.getGreen()-X2.getGreen())*(X1.getGreen()-X2.getGreen())
+                    +(X1.getBlue()-X2.getBlue())*(X1.getBlue()-X2.getBlue());
+            return X;
+        }
         if(x==0 && y==0){
             Color X1=picture.get(x+1,y);
             Color X2=picture.get(picture().width()-1, y);
